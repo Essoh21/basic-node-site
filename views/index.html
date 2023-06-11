@@ -4,8 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>home page</title>
+    <style>
+      body {
+        max-width: 1200px;
+      }
+      nav {
+        width: 100%;
+      }
+      nav ul {
+        display: flex;
+        gap: 1rem;
+      }
+      a {
+        text-decoration: none;
+      }
+      li {
+        list-style: none;
+      }
+    </style>
   </head>
   <body>
-    <h1>Welcome to nodejs</h1>
+    <h1 style="color: brown">Simple Node web app</h1>
+    <nav>
+      <ul>
+        <a href="/"><li>home</li></a>
+        <a href="/about"><li>About</li></a>
+        <a href="/contact-me"><li>Contact</li></a>
+      </ul>
+    </nav>
   </body>
 </html>

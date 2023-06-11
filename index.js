@@ -1,27 +1,20 @@
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
-const port = 3500;
+const express = require("express");
+const app = express();
+const PORT = 8080;
 
-const handleRequests = (req, res) => {
-  const requestUrl = req.url;
-  // sending response depending on request
-  const homeUrl = "/";
-  const aboutUrl = "/about";
-  const contactMeUrl = "/contact-me";
+app.get("/", (req, res) => {
+  res.sendFile("./views/index.html", { root: __dirname });
+});
+app.get("/about", (req, res) => {
+  res.sendFile("./views/about.html", { root: __dirname });
+});
+app.get("/contact-me", (req, res) => {
+  res.sendFile("./views/contact-me.html", { root: __dirname });
+});
+app.use((req, res) => {
+  res.status(404).sendFile("./views/404.html", { root: __dirname });
+});
 
-  if (requestUrl == homeUrl) {
-    res.writeHead(200, {
-      "Content-type": "text/html",
-    });
-    fs.readFile(
-      path.join(__dirname, "views", "index.html"),
-      (error, result) => {
-        if (error) console.log(error);
-        res.end(result);
-      }
-    );
-  }
-};
-
-http.createServer(handleRequests).listen(port, () => "server running");
+app.listen(PORT, () => {
+  console.log(`server running on port :${PORT}`);
+});
